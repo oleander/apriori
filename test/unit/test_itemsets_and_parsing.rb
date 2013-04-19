@@ -29,7 +29,7 @@ class TestAssociationRulesAndParsingApriori < Test::Unit::TestCase
     wanted.each do |key,value|
       assert_equal value, is.send(key), "Expected itemset '#{key}' to be '#{value}'"
     end
-    assert_equal "doritos <- beer (33.3/2, 100.0)", is.to_s
+    assert_equal "beer -> doritos (33.3/2, 100.0)", is.to_s
 
     assert is = AssociationRule.parse_line("apple <- doritos  (50.0/3, 33.3)")
     wanted = {
@@ -42,7 +42,7 @@ class TestAssociationRulesAndParsingApriori < Test::Unit::TestCase
     wanted.each do |key,value|
       assert_equal value, is.send(key), "Expected itemset '#{key}' to be '#{value}'"
     end
-    assert_equal "apple <- doritos (50.0/3, 33.3)", is.to_s
+    assert_equal "doritos -> apple (50.0/3, 33.3)", is.to_s
 
     assert is = AssociationRule.parse_line("foo <- bar baz  (66.7, 75.0)")
     wanted = {
@@ -55,7 +55,7 @@ class TestAssociationRulesAndParsingApriori < Test::Unit::TestCase
     wanted.each do |key,value|
       assert_equal value, is.send(key), "Expected itemset '#{key}' to be '#{value}'"
     end
-    assert_equal "foo <- bar baz (66.7, 75.0)", is.to_s
+    assert_equal "bar baz -> foo (66.7, 75.0)", is.to_s
 
     # foo <- bar baz bangle (66.7/4, 75.0)
     assert is = AssociationRule.parse_line("foo <- bar baz bangle (66.7/4, 75.0)")
@@ -69,7 +69,7 @@ class TestAssociationRulesAndParsingApriori < Test::Unit::TestCase
     wanted.each do |key,value|
       assert_equal value, is.send(key), "Expected itemset '#{key}' to be '#{value}'"
     end
-    assert_equal "foo <- bar baz bangle (66.7/4, 75.0)", is.to_s
+    assert_equal "bar baz bangle -> foo (66.7/4, 75.0)", is.to_s
   end
 
   def test_association_rule_equality
