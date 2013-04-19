@@ -113,7 +113,6 @@ extern void        nim_stats  (const NIMAP *nimap);
 #define nim_byname(m,n)   ap_st_lookup(m,n,0)
 #define nim_byid(m,i)     ((void*)(m)->ids[i])
 #define nim_name(d)       st_name(d)
-#define nim_cnt(m)        st_symcnt(m)
 #ifndef NDEBUG
 #define nim_stats(m)      st_stats(m)
 #endif

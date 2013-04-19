@@ -364,7 +364,7 @@ int is_recode (ITEMSET *iset, int minfrq, int dir, int *map)
   else if (dir > -2) cmp = _descmp;   /* and sort the items */
   else               cmp = _descmpx;  /* w.r.t. their frequency */
   nim_sort(iset->nimap, cmp, (void*)minfrq, map, 1);
-  for (n = nim_cnt(iset->nimap); --n >= 0; ) {
+  for (n = st_symcnt(iset->nimap); --n >= 0; ) {
     item = (ITEM*)nim_byid(iset->nimap, n);
     if (item->frq < minfrq)     /* determine frequent items and */
       item->app = APP_NONE;     /* set all others to 'ignore' */

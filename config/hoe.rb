@@ -59,14 +59,14 @@ $hoe = Hoe.spec GEM_NAME do
   self.developer(AUTHOR, EMAIL)
   self.description = DESCRIPTION
   self.summary = DESCRIPTION
-  self.url = HOMEPATH
+  self.urls = [HOMEPATH]
   self.rubyforge_name = RUBYFORGE_PROJECT if RUBYFORGE_PROJECT
   self.test_globs = ["test/**/test_*.rb"]
   self.clean_globs |= ['**/.*.sw?', '*.gem', '.config', '**/.DS_Store']  #An array of file patterns to delete on clean.
   self.extra_rdoc_files = ["test/fixtures/market_basket_results_test.txt", "test/fixtures/market_basket_string_test.txt", "test/fixtures/results.txt", "test/fixtures/sample.txt"]
 
   # self.spec_extras = {:extensions, FileList["ext/**/extconf.rb"].to_a} # A hash of extra values to set in the gemspec.
-  self.spec_extras = {:extensions, 'Rakefile'} # A hash of extra values to set in the gemspec.
+  self.spec_extras = {extensions: 'Rakefile'} # A hash of extra values to set in the gemspec.
 
   # == Optional
   self.changes = self.paragraphs_of("History.txt", 0..1).join("\n\n")

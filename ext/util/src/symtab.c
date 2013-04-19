@@ -31,6 +31,7 @@
 #include <string.h>
 #include <limits.h>
 #include <assert.h>
+#include "tract.h"
 #include "symtab.h"
 #ifdef NIMAPFN
 #include "vecops.h"

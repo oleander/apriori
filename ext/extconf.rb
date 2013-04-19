@@ -5,15 +5,14 @@ require 'mkmf'
 apriori_root = File.dirname(__FILE__)
 
 $objs = ["#{apriori_root}/util/src/vecops.o", 
-         "#{apriori_root}/util/src/nimap.o",
          "#{apriori_root}/util/src/tabscan.o",  
-         "#{apriori_root}/util/src/scform.o",
          "#{apriori_root}/math/src/gamma.o",
          "#{apriori_root}/math/src/chi2.o", 
+          "#{apriori_root}/util/src/symtab.o",
          "#{apriori_root}/apriori/src/tract.o",
          "#{apriori_root}/apriori/src/istree.o",
          "apriori_wrapper.o",
-         "Apriori.o"]
+         "apriori_ext.o"]
 
 $CPPFLAGS = " -I#{apriori_root}/util/src -I#{apriori_root}/math/src -I#{apriori_root}/apriori/src "
 #$CFLAGS = " -ansi -Wall -pedantic  -DNDEBUG -O3 -DCHI2QTL_MAIN "
@@ -26,7 +25,7 @@ $CPPFLAGS = " -I#{apriori_root}/util/src -I#{apriori_root}/math/src -I#{apriori_
 extension_name = 'apriori_ext'
 
 # The destination
-dir_config(extension_name)
+# dir_config(extension_name)
 
 # Do the work
 create_makefile(extension_name)

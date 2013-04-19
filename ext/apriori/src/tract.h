@@ -22,6 +22,7 @@
 #ifndef NIMAPFN
 #define NIMAPFN
 #endif
+
 #include "vecops.h"
 #include "symtab.h"
 #include "tabscan.h"
@@ -208,8 +209,12 @@ extern void        tat_show    (TATREE *tat);
   Preprocessor Definitions
 ----------------------------------------------------------------------*/
 #define is_tabscan(s)     ((s)->tscan)
-
-#define is_cnt(s)         nim_cnt((s)->nimap)
+#define nim_delete(m)     ap_st_delete(m)
+#define nim_add(m,n,s)    ap_st_insert(m,n,0,s)
+#define nim_byname(m,n)   ap_st_lookup(m,n,0)
+#define nim_byid(m,i)     ((void*)(m)->ids[i])
+#define nim_name(d)       st_name(d)
+#define is_cnt(s)         st_symcnt((s)->nimap)
 #define is_name(s,i)      nim_name(nim_byid((s)->nimap, i))
 #define is_gettac(s)      ((s)->tac)
 #define is_settac(s,n)    ((s)->tac  = (n))

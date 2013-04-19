@@ -1,6 +1,6 @@
 // Include the Ruby headers and goodies
 #include "ruby.h"
-#include "intern.h"
+// #include "intern.h"
 #include "apriori_wrapper.h"
 
 // Defining a space for information and references about the module to be stored internally
@@ -72,15 +72,15 @@ VALUE method_ap_do_apriori(VALUE self, VALUE rargv) {
   int i = 0;
   VALUE ary_value;
   // get the number of arguments
-  int ruby_argv_length = RARRAY(rargv)->len;
+  int ruby_argv_length = RARRAY_LEN(rargv);
   // allocate enough memory for a pointer to each char *
   argv = malloc(ruby_argv_length * sizeof(*argv));
 
   // copy the ruby array of strings to a c "array of strings"
   // todo, turn this into a function
   while((ary_value = rb_ary_shift(rargv)) != Qnil) {
-    argv[i] = malloc(strlen(STR2CSTR(ary_value)) + 1);
-    strcpy(argv[i], STR2CSTR(ary_value));
+    argv[i] = malloc(strlen(StringValuePtr(ary_value)) + 1);
+    strcpy(argv[i], StringValuePtr(ary_value));
     i++;
   }
   do_apriori(i, argv);
@@ -107,8 +107,8 @@ char **convert_rb_ary_strings_to_c_ary_strings(VALUE rary) {
   // copy the ruby array of strings to a c "array of strings"
   // todo, turn this into a function
   while((ary_value = rb_ary_shift(rary)) != Qnil) {
-    argv[i] = malloc(strlen(STR2CSTR(ary_value)) + 1);
-    strcpy(argv[i], STR2CSTR(ary_value));
+    argv[i] = malloc(strlen(StringValuePtr(ary_value)) + 1);
+    strcpy(argv[i], StringValuePtr(ary_value));
     fprintf(stderr, "%s\n", argv[i]);
     i++;
   }
@@ -132,7 +132,7 @@ void asdf_junk_box() {
 
 //  for(i=0; i < NUM2INT(rb_ary_length(rargv)); i++) {
 //    VALUE argv = rb_ary_new();
-    //fprintf(stderr, STR2CSTR(rb_ary_fetch(1, 1, rargv)));
+    //fprintf(stderr, StringValuePtr(rb_ary_fetch(1, 1, rargv)));
 //  }
     // get an array of ruby strings
     // convert it to a c array of char *'s

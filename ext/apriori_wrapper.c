@@ -66,6 +66,7 @@
 #include <math.h>
 #include <time.h>
 #include <assert.h>
+#include "symtab.h"
 #include "apriori_wrapper.h"
 #include "scan.h"
 #include "tract.h"
