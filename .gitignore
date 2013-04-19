@@ -13,3 +13,4 @@ examples/test_data/kosarak.dat
 examples/test_data/retail.dat
 ext/apriori/src/apriori
 pkg/apriori-*
+*.gem
